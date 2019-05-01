@@ -3,13 +3,13 @@ package com.dotComIt.learnWith.config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import com.microsoft.sqlserver.jdbc.SQLServerDriver;
+//import com.microsoft.sqlserver.jdbc.SQLServerDriver;
 
 public class DatabaseConfig {
   String host = "jdbc:sqlserver://VCSql.db.11717052.7cf.hostedresource.net";
   String port = "1433";
   String database = "VCSql";
-  String username = "VCsql";
+  String username = "VCSql";
   String password = "Home#2241";
   Connection connection = null;
 
@@ -18,7 +18,8 @@ public class DatabaseConfig {
       return connection;
     }
     String connectionString = host + ":" + port + ";" + "database=" + database + ";" + "user=" + username + ";"
-        + "password+" + password + ";";
+        + "password=" + password + ";";
+
     try {
       Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
       connection = DriverManager.getConnection(connectionString);
@@ -28,8 +29,11 @@ public class DatabaseConfig {
       if (connection != null) {
         closeConnection();
       }
+
     }
+
     return connection;
+
   };
 
   public void closeConnection() {
@@ -38,4 +42,5 @@ public class DatabaseConfig {
     } catch (Exception e) {
     }
   }
+
 }
